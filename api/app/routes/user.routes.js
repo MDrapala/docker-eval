@@ -1,9 +1,11 @@
 const controller = require("../controllers/user.controller");
 let router = require("express").Router();
 
-module.exports = function (app) {
+module.exports = (app) => {
   //If the url path is equal to "/users" for GET request
-  app.get("/", controller.find);
+  router.get("/", controller.find);
+
+  router.post("/", controller.create);
 
   //Define the default path
   app.use("/users", router);
