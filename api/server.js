@@ -1,7 +1,7 @@
 require("dotenv").config({ path: "./.env" });
+require("./app/config/mongoose"); // Connect to MongoDB
 const express = require("express");
 const cors = require("cors");
-require("./app/config/mongoose");
 
 const app = express();
 

@@ -1,21 +1,21 @@
-# pull official base image
+#Pull official base image
 FROM node:latest
 
-# set working directory
+#Set working directory
 WORKDIR /app
 
-# add `/app/node_modules/.bin` to $PATH
+#Add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
 
-# install app dependencies
+#Install app dependencies
 COPY ./site/package.json ./
 
 RUN yarn install
 RUN yarn global add react-scripts@latest
 
-# add app
+#Add app
 COPY . ./
 
-# start app
+#Start app
 
 CMD "cd site" | "yarn start"
