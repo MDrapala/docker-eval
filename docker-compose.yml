@@ -1,6 +1,7 @@
 version: "3.9" # Docker version 3.9
 
 services:
+  # Api Service
   node:
     image: "node:latest" #Install last version node (https://hub.docker.com/_/node)
     working_dir: /home/node/app
@@ -28,3 +29,15 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: "${ME_CONFIG_MONGODB_ADMINUSERNAME}"
       ME_CONFIG_MONGODB_ADMINPASSWORD: "${ME_CONFIG_MONGODB_ADMINPASSWORD}"
       ME_CONFIG_MONGODB_URL: "${ME_CONFIG_MONGODB_URL}"
+
+  #FRONT service
+  site:
+    container_name: site
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - "./site:/app"
+      - "/app/node_modules"
+    ports:
+      - 3001:3000
