@@ -9,3 +9,22 @@ services:
     ports:
       - 4545:4545 #Open port 4545 at docker
     command: "yarn api" #Launch project
+
+  mongo:
+    image: mongo:latest
+    restart: always
+    volumes:
+      - ./mongodata:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "${MONGO_INITDB_ROOT_USERNAME}"
+      MONGO_INITDB_ROOT_PASSWORD: "${MONGO_INITDB_ROOT_PASSWORD}"
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: "${ME_CONFIG_MONGODB_ADMINUSERNAME}"
+      ME_CONFIG_MONGODB_ADMINPASSWORD: "${ME_CONFIG_MONGODB_ADMINPASSWORD}"
+      ME_CONFIG_MONGODB_URL: "${ME_CONFIG_MONGODB_URL}"
